@@ -1,0 +1,18 @@
+// commencer par un fichier ne contenant que des commentaires
+
+// puis compléter ce fichier au fur et à mesure
+//forward 100 + 1 * 0 
+//forward 100
+//turnleft 90
+//color red
+//forward 100
+
+def f(n) {
+  repeat 4 {
+    forward 100
+    turnleft 45+-90
+  }
+}
+
+f(4)
+f(5)

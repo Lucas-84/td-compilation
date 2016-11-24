@@ -1,0 +1,27 @@
+
+** Conflict (shift/reduce) in state 32.
+** Token involved: ELSE
+** This state is reached from prog after reading:
+
+IF expr IF expr stmt 
+
+** The derivations that appear below have the following common factor:
+** (The question mark symbol (?) represents the spot where the derivations begin to differ.)
+
+prog 
+list(stmt) EOF 
+stmt list(stmt) 
+(?)
+
+** In state 32, looking ahead at ELSE, reducing production
+** stmt -> IF expr stmt 
+** is permitted because of the following sub-derivation:
+
+IF expr stmt ELSE stmt // lookahead token appears
+        IF expr stmt . 
+
+** In state 32, looking ahead at ELSE, shifting is permitted
+** because of the following sub-derivation:
+
+IF expr stmt 
+        IF expr stmt . ELSE stmt 

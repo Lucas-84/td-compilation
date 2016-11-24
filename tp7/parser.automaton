@@ -1,0 +1,906 @@
+State 0:
+prog' -> . prog [ # ]
+-- On DEF shift to state 1
+-- On prog shift to state 62
+-- On list(def) shift to state 63
+-- On def shift to state 66
+-- On TURNRIGHT reduce production list(def) -> 
+-- On TURNLEFT reduce production list(def) -> 
+-- On REPEAT reduce production list(def) -> 
+-- On PENUP reduce production list(def) -> 
+-- On PENDOWN reduce production list(def) -> 
+-- On LACC reduce production list(def) -> 
+-- On IF reduce production list(def) -> 
+-- On IDENT reduce production list(def) -> 
+-- On FORWARD reduce production list(def) -> 
+-- On EOF reduce production list(def) -> 
+-- On COLOR reduce production list(def) -> 
+
+State 1:
+def -> DEF . IDENT LPAR loption(separated_nonempty_list(COMMA,IDENT)) RPAR stmt [ TURNRIGHT TURNLEFT REPEAT PENUP PENDOWN LACC IF IDENT FORWARD EOF DEF COLOR ]
+-- On IDENT shift to state 2
+
+State 2:
+def -> DEF IDENT . LPAR loption(separated_nonempty_list(COMMA,IDENT)) RPAR stmt [ TURNRIGHT TURNLEFT REPEAT PENUP PENDOWN LACC IF IDENT FORWARD EOF DEF COLOR ]
+-- On LPAR shift to state 3
+
+State 3:
+def -> DEF IDENT LPAR . loption(separated_nonempty_list(COMMA,IDENT)) RPAR stmt [ TURNRIGHT TURNLEFT REPEAT PENUP PENDOWN LACC IF IDENT FORWARD EOF DEF COLOR ]
+-- On IDENT shift to state 4
+-- On separated_nonempty_list(COMMA,IDENT) shift to state 7
+-- On loption(separated_nonempty_list(COMMA,IDENT)) shift to state 8
+-- On RPAR reduce production loption(separated_nonempty_list(COMMA,IDENT)) -> 
+
+State 4:
+separated_nonempty_list(COMMA,IDENT) -> IDENT . [ RPAR ]
+separated_nonempty_list(COMMA,IDENT) -> IDENT . COMMA separated_nonempty_list(COMMA,IDENT) [ RPAR ]
+-- On COMMA shift to state 5
+-- On RPAR reduce production separated_nonempty_list(COMMA,IDENT) -> IDENT 
+
+State 5:
+separated_nonempty_list(COMMA,IDENT) -> IDENT COMMA . separated_nonempty_list(COMMA,IDENT) [ RPAR ]
+-- On IDENT shift to state 4
+-- On separated_nonempty_list(COMMA,IDENT) shift to state 6
+
+State 6:
+separated_nonempty_list(COMMA,IDENT) -> IDENT COMMA separated_nonempty_list(COMMA,IDENT) . [ RPAR ]
+-- On RPAR reduce production separated_nonempty_list(COMMA,IDENT) -> IDENT COMMA separated_nonempty_list(COMMA,IDENT) 
+
+State 7:
+loption(separated_nonempty_list(COMMA,IDENT)) -> separated_nonempty_list(COMMA,IDENT) . [ RPAR ]
+-- On RPAR reduce production loption(separated_nonempty_list(COMMA,IDENT)) -> separated_nonempty_list(COMMA,IDENT) 
+
+State 8:
+def -> DEF IDENT LPAR loption(separated_nonempty_list(COMMA,IDENT)) . RPAR stmt [ TURNRIGHT TURNLEFT REPEAT PENUP PENDOWN LACC IF IDENT FORWARD EOF DEF COLOR ]
+-- On RPAR shift to state 9
+
+State 9:
+def -> DEF IDENT LPAR loption(separated_nonempty_list(COMMA,IDENT)) RPAR . stmt [ TURNRIGHT TURNLEFT REPEAT PENUP PENDOWN LACC IF IDENT FORWARD EOF DEF COLOR ]
+-- On TURNRIGHT shift to state 10
+-- On TURNLEFT shift to state 27
+-- On REPEAT shift to state 29
+-- On PENUP shift to state 31
+-- On PENDOWN shift to state 32
+-- On LACC shift to state 33
+-- On IF shift to state 34
+-- On IDENT shift to state 36
+-- On FORWARD shift to state 44
+-- On COLOR shift to state 46
+-- On stmt shift to state 61
+
+State 10:
+stmt -> TURNRIGHT . expr [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On SUB shift to state 11
+-- On LPAR shift to state 12
+-- On INT shift to state 13
+-- On IDENT shift to state 14
+-- On expr shift to state 26
+
+State 11:
+expr -> SUB . expr [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+-- On SUB shift to state 11
+-- On LPAR shift to state 12
+-- On INT shift to state 13
+-- On IDENT shift to state 14
+-- On expr shift to state 25
+
+State 12:
+expr -> LPAR . expr RPAR [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+-- On SUB shift to state 11
+-- On LPAR shift to state 12
+-- On INT shift to state 13
+-- On IDENT shift to state 14
+-- On expr shift to state 15
+
+State 13:
+expr -> INT . [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+-- On TURNRIGHT reduce production expr -> INT 
+-- On TURNLEFT reduce production expr -> INT 
+-- On SUB reduce production expr -> INT 
+-- On RPAR reduce production expr -> INT 
+-- On REPEAT reduce production expr -> INT 
+-- On RACC reduce production expr -> INT 
+-- On PENUP reduce production expr -> INT 
+-- On PENDOWN reduce production expr -> INT 
+-- On MUL reduce production expr -> INT 
+-- On LACC reduce production expr -> INT 
+-- On IF reduce production expr -> INT 
+-- On IDENT reduce production expr -> INT 
+-- On FORWARD reduce production expr -> INT 
+-- On EOF reduce production expr -> INT 
+-- On ELSE reduce production expr -> INT 
+-- On DIV reduce production expr -> INT 
+-- On DEF reduce production expr -> INT 
+-- On COMMA reduce production expr -> INT 
+-- On COLOR reduce production expr -> INT 
+-- On ADD reduce production expr -> INT 
+
+State 14:
+expr -> IDENT . [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+-- On TURNRIGHT reduce production expr -> IDENT 
+-- On TURNLEFT reduce production expr -> IDENT 
+-- On SUB reduce production expr -> IDENT 
+-- On RPAR reduce production expr -> IDENT 
+-- On REPEAT reduce production expr -> IDENT 
+-- On RACC reduce production expr -> IDENT 
+-- On PENUP reduce production expr -> IDENT 
+-- On PENDOWN reduce production expr -> IDENT 
+-- On MUL reduce production expr -> IDENT 
+-- On LACC reduce production expr -> IDENT 
+-- On IF reduce production expr -> IDENT 
+-- On IDENT reduce production expr -> IDENT 
+-- On FORWARD reduce production expr -> IDENT 
+-- On EOF reduce production expr -> IDENT 
+-- On ELSE reduce production expr -> IDENT 
+-- On DIV reduce production expr -> IDENT 
+-- On DEF reduce production expr -> IDENT 
+-- On COMMA reduce production expr -> IDENT 
+-- On COLOR reduce production expr -> IDENT 
+-- On ADD reduce production expr -> IDENT 
+
+State 15:
+expr -> expr . ADD expr [ SUB RPAR MUL DIV ADD ]
+expr -> expr . SUB expr [ SUB RPAR MUL DIV ADD ]
+expr -> expr . MUL expr [ SUB RPAR MUL DIV ADD ]
+expr -> expr . DIV expr [ SUB RPAR MUL DIV ADD ]
+expr -> LPAR expr . RPAR [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+-- On SUB shift to state 16
+-- On RPAR shift to state 22
+-- On MUL shift to state 18
+-- On DIV shift to state 20
+-- On ADD shift to state 23
+
+State 16:
+expr -> expr SUB . expr [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+-- On SUB shift to state 11
+-- On LPAR shift to state 12
+-- On INT shift to state 13
+-- On IDENT shift to state 14
+-- On expr shift to state 17
+
+State 17:
+expr -> expr . ADD expr [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+expr -> expr . SUB expr [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+expr -> expr SUB expr . [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+expr -> expr . MUL expr [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+expr -> expr . DIV expr [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+-- On MUL shift to state 18
+-- On DIV shift to state 20
+-- On TURNRIGHT reduce production expr -> expr SUB expr 
+-- On TURNLEFT reduce production expr -> expr SUB expr 
+-- On SUB reduce production expr -> expr SUB expr 
+-- On RPAR reduce production expr -> expr SUB expr 
+-- On REPEAT reduce production expr -> expr SUB expr 
+-- On RACC reduce production expr -> expr SUB expr 
+-- On PENUP reduce production expr -> expr SUB expr 
+-- On PENDOWN reduce production expr -> expr SUB expr 
+-- On LACC reduce production expr -> expr SUB expr 
+-- On IF reduce production expr -> expr SUB expr 
+-- On IDENT reduce production expr -> expr SUB expr 
+-- On FORWARD reduce production expr -> expr SUB expr 
+-- On EOF reduce production expr -> expr SUB expr 
+-- On ELSE reduce production expr -> expr SUB expr 
+-- On DEF reduce production expr -> expr SUB expr 
+-- On COMMA reduce production expr -> expr SUB expr 
+-- On COLOR reduce production expr -> expr SUB expr 
+-- On ADD reduce production expr -> expr SUB expr 
+
+State 18:
+expr -> expr MUL . expr [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+-- On SUB shift to state 11
+-- On LPAR shift to state 12
+-- On INT shift to state 13
+-- On IDENT shift to state 14
+-- On expr shift to state 19
+
+State 19:
+expr -> expr . ADD expr [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+expr -> expr . SUB expr [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+expr -> expr . MUL expr [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+expr -> expr MUL expr . [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+expr -> expr . DIV expr [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+-- On TURNRIGHT reduce production expr -> expr MUL expr 
+-- On TURNLEFT reduce production expr -> expr MUL expr 
+-- On SUB reduce production expr -> expr MUL expr 
+-- On RPAR reduce production expr -> expr MUL expr 
+-- On REPEAT reduce production expr -> expr MUL expr 
+-- On RACC reduce production expr -> expr MUL expr 
+-- On PENUP reduce production expr -> expr MUL expr 
+-- On PENDOWN reduce production expr -> expr MUL expr 
+-- On MUL reduce production expr -> expr MUL expr 
+-- On LACC reduce production expr -> expr MUL expr 
+-- On IF reduce production expr -> expr MUL expr 
+-- On IDENT reduce production expr -> expr MUL expr 
+-- On FORWARD reduce production expr -> expr MUL expr 
+-- On EOF reduce production expr -> expr MUL expr 
+-- On ELSE reduce production expr -> expr MUL expr 
+-- On DIV reduce production expr -> expr MUL expr 
+-- On DEF reduce production expr -> expr MUL expr 
+-- On COMMA reduce production expr -> expr MUL expr 
+-- On COLOR reduce production expr -> expr MUL expr 
+-- On ADD reduce production expr -> expr MUL expr 
+
+State 20:
+expr -> expr DIV . expr [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+-- On SUB shift to state 11
+-- On LPAR shift to state 12
+-- On INT shift to state 13
+-- On IDENT shift to state 14
+-- On expr shift to state 21
+
+State 21:
+expr -> expr . ADD expr [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+expr -> expr . SUB expr [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+expr -> expr . MUL expr [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+expr -> expr . DIV expr [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+expr -> expr DIV expr . [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+-- On TURNRIGHT reduce production expr -> expr DIV expr 
+-- On TURNLEFT reduce production expr -> expr DIV expr 
+-- On SUB reduce production expr -> expr DIV expr 
+-- On RPAR reduce production expr -> expr DIV expr 
+-- On REPEAT reduce production expr -> expr DIV expr 
+-- On RACC reduce production expr -> expr DIV expr 
+-- On PENUP reduce production expr -> expr DIV expr 
+-- On PENDOWN reduce production expr -> expr DIV expr 
+-- On MUL reduce production expr -> expr DIV expr 
+-- On LACC reduce production expr -> expr DIV expr 
+-- On IF reduce production expr -> expr DIV expr 
+-- On IDENT reduce production expr -> expr DIV expr 
+-- On FORWARD reduce production expr -> expr DIV expr 
+-- On EOF reduce production expr -> expr DIV expr 
+-- On ELSE reduce production expr -> expr DIV expr 
+-- On DIV reduce production expr -> expr DIV expr 
+-- On DEF reduce production expr -> expr DIV expr 
+-- On COMMA reduce production expr -> expr DIV expr 
+-- On COLOR reduce production expr -> expr DIV expr 
+-- On ADD reduce production expr -> expr DIV expr 
+
+State 22:
+expr -> LPAR expr RPAR . [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+-- On TURNRIGHT reduce production expr -> LPAR expr RPAR 
+-- On TURNLEFT reduce production expr -> LPAR expr RPAR 
+-- On SUB reduce production expr -> LPAR expr RPAR 
+-- On RPAR reduce production expr -> LPAR expr RPAR 
+-- On REPEAT reduce production expr -> LPAR expr RPAR 
+-- On RACC reduce production expr -> LPAR expr RPAR 
+-- On PENUP reduce production expr -> LPAR expr RPAR 
+-- On PENDOWN reduce production expr -> LPAR expr RPAR 
+-- On MUL reduce production expr -> LPAR expr RPAR 
+-- On LACC reduce production expr -> LPAR expr RPAR 
+-- On IF reduce production expr -> LPAR expr RPAR 
+-- On IDENT reduce production expr -> LPAR expr RPAR 
+-- On FORWARD reduce production expr -> LPAR expr RPAR 
+-- On EOF reduce production expr -> LPAR expr RPAR 
+-- On ELSE reduce production expr -> LPAR expr RPAR 
+-- On DIV reduce production expr -> LPAR expr RPAR 
+-- On DEF reduce production expr -> LPAR expr RPAR 
+-- On COMMA reduce production expr -> LPAR expr RPAR 
+-- On COLOR reduce production expr -> LPAR expr RPAR 
+-- On ADD reduce production expr -> LPAR expr RPAR 
+
+State 23:
+expr -> expr ADD . expr [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+-- On SUB shift to state 11
+-- On LPAR shift to state 12
+-- On INT shift to state 13
+-- On IDENT shift to state 14
+-- On expr shift to state 24
+
+State 24:
+expr -> expr . ADD expr [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+expr -> expr ADD expr . [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+expr -> expr . SUB expr [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+expr -> expr . MUL expr [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+expr -> expr . DIV expr [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+-- On MUL shift to state 18
+-- On DIV shift to state 20
+-- On TURNRIGHT reduce production expr -> expr ADD expr 
+-- On TURNLEFT reduce production expr -> expr ADD expr 
+-- On SUB reduce production expr -> expr ADD expr 
+-- On RPAR reduce production expr -> expr ADD expr 
+-- On REPEAT reduce production expr -> expr ADD expr 
+-- On RACC reduce production expr -> expr ADD expr 
+-- On PENUP reduce production expr -> expr ADD expr 
+-- On PENDOWN reduce production expr -> expr ADD expr 
+-- On LACC reduce production expr -> expr ADD expr 
+-- On IF reduce production expr -> expr ADD expr 
+-- On IDENT reduce production expr -> expr ADD expr 
+-- On FORWARD reduce production expr -> expr ADD expr 
+-- On EOF reduce production expr -> expr ADD expr 
+-- On ELSE reduce production expr -> expr ADD expr 
+-- On DEF reduce production expr -> expr ADD expr 
+-- On COMMA reduce production expr -> expr ADD expr 
+-- On COLOR reduce production expr -> expr ADD expr 
+-- On ADD reduce production expr -> expr ADD expr 
+
+State 25:
+expr -> expr . ADD expr [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+expr -> expr . SUB expr [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+expr -> expr . MUL expr [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+expr -> expr . DIV expr [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+expr -> SUB expr . [ TURNRIGHT TURNLEFT SUB RPAR REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COMMA COLOR ADD ]
+-- On MUL shift to state 18
+-- On DIV shift to state 20
+-- On TURNRIGHT reduce production expr -> SUB expr 
+-- On TURNLEFT reduce production expr -> SUB expr 
+-- On SUB reduce production expr -> SUB expr 
+-- On RPAR reduce production expr -> SUB expr 
+-- On REPEAT reduce production expr -> SUB expr 
+-- On RACC reduce production expr -> SUB expr 
+-- On PENUP reduce production expr -> SUB expr 
+-- On PENDOWN reduce production expr -> SUB expr 
+-- On LACC reduce production expr -> SUB expr 
+-- On IF reduce production expr -> SUB expr 
+-- On IDENT reduce production expr -> SUB expr 
+-- On FORWARD reduce production expr -> SUB expr 
+-- On EOF reduce production expr -> SUB expr 
+-- On ELSE reduce production expr -> SUB expr 
+-- On DEF reduce production expr -> SUB expr 
+-- On COMMA reduce production expr -> SUB expr 
+-- On COLOR reduce production expr -> SUB expr 
+-- On ADD reduce production expr -> SUB expr 
+
+State 26:
+expr -> expr . ADD expr [ TURNRIGHT TURNLEFT SUB REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COLOR ADD ]
+expr -> expr . SUB expr [ TURNRIGHT TURNLEFT SUB REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COLOR ADD ]
+expr -> expr . MUL expr [ TURNRIGHT TURNLEFT SUB REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COLOR ADD ]
+expr -> expr . DIV expr [ TURNRIGHT TURNLEFT SUB REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COLOR ADD ]
+stmt -> TURNRIGHT expr . [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On SUB shift to state 16
+-- On MUL shift to state 18
+-- On DIV shift to state 20
+-- On ADD shift to state 23
+-- On TURNRIGHT reduce production stmt -> TURNRIGHT expr 
+-- On TURNLEFT reduce production stmt -> TURNRIGHT expr 
+-- On REPEAT reduce production stmt -> TURNRIGHT expr 
+-- On RACC reduce production stmt -> TURNRIGHT expr 
+-- On PENUP reduce production stmt -> TURNRIGHT expr 
+-- On PENDOWN reduce production stmt -> TURNRIGHT expr 
+-- On LACC reduce production stmt -> TURNRIGHT expr 
+-- On IF reduce production stmt -> TURNRIGHT expr 
+-- On IDENT reduce production stmt -> TURNRIGHT expr 
+-- On FORWARD reduce production stmt -> TURNRIGHT expr 
+-- On EOF reduce production stmt -> TURNRIGHT expr 
+-- On ELSE reduce production stmt -> TURNRIGHT expr 
+-- On DEF reduce production stmt -> TURNRIGHT expr 
+-- On COLOR reduce production stmt -> TURNRIGHT expr 
+
+State 27:
+stmt -> TURNLEFT . expr [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On SUB shift to state 11
+-- On LPAR shift to state 12
+-- On INT shift to state 13
+-- On IDENT shift to state 14
+-- On expr shift to state 28
+
+State 28:
+expr -> expr . ADD expr [ TURNRIGHT TURNLEFT SUB REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COLOR ADD ]
+expr -> expr . SUB expr [ TURNRIGHT TURNLEFT SUB REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COLOR ADD ]
+expr -> expr . MUL expr [ TURNRIGHT TURNLEFT SUB REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COLOR ADD ]
+expr -> expr . DIV expr [ TURNRIGHT TURNLEFT SUB REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COLOR ADD ]
+stmt -> TURNLEFT expr . [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On SUB shift to state 16
+-- On MUL shift to state 18
+-- On DIV shift to state 20
+-- On ADD shift to state 23
+-- On TURNRIGHT reduce production stmt -> TURNLEFT expr 
+-- On TURNLEFT reduce production stmt -> TURNLEFT expr 
+-- On REPEAT reduce production stmt -> TURNLEFT expr 
+-- On RACC reduce production stmt -> TURNLEFT expr 
+-- On PENUP reduce production stmt -> TURNLEFT expr 
+-- On PENDOWN reduce production stmt -> TURNLEFT expr 
+-- On LACC reduce production stmt -> TURNLEFT expr 
+-- On IF reduce production stmt -> TURNLEFT expr 
+-- On IDENT reduce production stmt -> TURNLEFT expr 
+-- On FORWARD reduce production stmt -> TURNLEFT expr 
+-- On EOF reduce production stmt -> TURNLEFT expr 
+-- On ELSE reduce production stmt -> TURNLEFT expr 
+-- On DEF reduce production stmt -> TURNLEFT expr 
+-- On COLOR reduce production stmt -> TURNLEFT expr 
+
+State 29:
+stmt -> REPEAT . expr stmt [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On SUB shift to state 11
+-- On LPAR shift to state 12
+-- On INT shift to state 13
+-- On IDENT shift to state 14
+-- On expr shift to state 30
+
+State 30:
+expr -> expr . ADD expr [ TURNRIGHT TURNLEFT SUB REPEAT PENUP PENDOWN MUL LACC IF IDENT FORWARD DIV COLOR ADD ]
+expr -> expr . SUB expr [ TURNRIGHT TURNLEFT SUB REPEAT PENUP PENDOWN MUL LACC IF IDENT FORWARD DIV COLOR ADD ]
+expr -> expr . MUL expr [ TURNRIGHT TURNLEFT SUB REPEAT PENUP PENDOWN MUL LACC IF IDENT FORWARD DIV COLOR ADD ]
+expr -> expr . DIV expr [ TURNRIGHT TURNLEFT SUB REPEAT PENUP PENDOWN MUL LACC IF IDENT FORWARD DIV COLOR ADD ]
+stmt -> REPEAT expr . stmt [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On TURNRIGHT shift to state 10
+-- On TURNLEFT shift to state 27
+-- On SUB shift to state 16
+-- On REPEAT shift to state 29
+-- On PENUP shift to state 31
+-- On PENDOWN shift to state 32
+-- On MUL shift to state 18
+-- On LACC shift to state 33
+-- On IF shift to state 34
+-- On IDENT shift to state 36
+-- On FORWARD shift to state 44
+-- On DIV shift to state 20
+-- On COLOR shift to state 46
+-- On ADD shift to state 23
+-- On stmt shift to state 60
+
+State 31:
+stmt -> PENUP . [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On TURNRIGHT reduce production stmt -> PENUP 
+-- On TURNLEFT reduce production stmt -> PENUP 
+-- On REPEAT reduce production stmt -> PENUP 
+-- On RACC reduce production stmt -> PENUP 
+-- On PENUP reduce production stmt -> PENUP 
+-- On PENDOWN reduce production stmt -> PENUP 
+-- On LACC reduce production stmt -> PENUP 
+-- On IF reduce production stmt -> PENUP 
+-- On IDENT reduce production stmt -> PENUP 
+-- On FORWARD reduce production stmt -> PENUP 
+-- On EOF reduce production stmt -> PENUP 
+-- On ELSE reduce production stmt -> PENUP 
+-- On DEF reduce production stmt -> PENUP 
+-- On COLOR reduce production stmt -> PENUP 
+
+State 32:
+stmt -> PENDOWN . [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On TURNRIGHT reduce production stmt -> PENDOWN 
+-- On TURNLEFT reduce production stmt -> PENDOWN 
+-- On REPEAT reduce production stmt -> PENDOWN 
+-- On RACC reduce production stmt -> PENDOWN 
+-- On PENUP reduce production stmt -> PENDOWN 
+-- On PENDOWN reduce production stmt -> PENDOWN 
+-- On LACC reduce production stmt -> PENDOWN 
+-- On IF reduce production stmt -> PENDOWN 
+-- On IDENT reduce production stmt -> PENDOWN 
+-- On FORWARD reduce production stmt -> PENDOWN 
+-- On EOF reduce production stmt -> PENDOWN 
+-- On ELSE reduce production stmt -> PENDOWN 
+-- On DEF reduce production stmt -> PENDOWN 
+-- On COLOR reduce production stmt -> PENDOWN 
+
+State 33:
+stmt -> LACC . list(stmt) RACC [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On TURNRIGHT shift to state 10
+-- On TURNLEFT shift to state 27
+-- On REPEAT shift to state 29
+-- On PENUP shift to state 31
+-- On PENDOWN shift to state 32
+-- On LACC shift to state 33
+-- On IF shift to state 34
+-- On IDENT shift to state 36
+-- On FORWARD shift to state 44
+-- On COLOR shift to state 46
+-- On stmt shift to state 56
+-- On list(stmt) shift to state 58
+-- On RACC reduce production list(stmt) -> 
+
+State 34:
+stmt -> IF . expr stmt [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+stmt -> IF . expr stmt ELSE stmt [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On SUB shift to state 11
+-- On LPAR shift to state 12
+-- On INT shift to state 13
+-- On IDENT shift to state 14
+-- On expr shift to state 35
+
+State 35:
+expr -> expr . ADD expr [ TURNRIGHT TURNLEFT SUB REPEAT PENUP PENDOWN MUL LACC IF IDENT FORWARD DIV COLOR ADD ]
+expr -> expr . SUB expr [ TURNRIGHT TURNLEFT SUB REPEAT PENUP PENDOWN MUL LACC IF IDENT FORWARD DIV COLOR ADD ]
+expr -> expr . MUL expr [ TURNRIGHT TURNLEFT SUB REPEAT PENUP PENDOWN MUL LACC IF IDENT FORWARD DIV COLOR ADD ]
+expr -> expr . DIV expr [ TURNRIGHT TURNLEFT SUB REPEAT PENUP PENDOWN MUL LACC IF IDENT FORWARD DIV COLOR ADD ]
+stmt -> IF expr . stmt [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+stmt -> IF expr . stmt ELSE stmt [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On TURNRIGHT shift to state 10
+-- On TURNLEFT shift to state 27
+-- On SUB shift to state 16
+-- On REPEAT shift to state 29
+-- On PENUP shift to state 31
+-- On PENDOWN shift to state 32
+-- On MUL shift to state 18
+-- On LACC shift to state 33
+-- On IF shift to state 34
+-- On IDENT shift to state 36
+-- On FORWARD shift to state 44
+-- On DIV shift to state 20
+-- On COLOR shift to state 46
+-- On ADD shift to state 23
+-- On stmt shift to state 53
+
+State 36:
+stmt -> IDENT . LPAR loption(separated_nonempty_list(COMMA,expr)) RPAR [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On LPAR shift to state 37
+
+State 37:
+stmt -> IDENT LPAR . loption(separated_nonempty_list(COMMA,expr)) RPAR [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On SUB shift to state 11
+-- On LPAR shift to state 12
+-- On INT shift to state 13
+-- On IDENT shift to state 14
+-- On separated_nonempty_list(COMMA,expr) shift to state 38
+-- On loption(separated_nonempty_list(COMMA,expr)) shift to state 39
+-- On expr shift to state 41
+-- On RPAR reduce production loption(separated_nonempty_list(COMMA,expr)) -> 
+
+State 38:
+loption(separated_nonempty_list(COMMA,expr)) -> separated_nonempty_list(COMMA,expr) . [ RPAR ]
+-- On RPAR reduce production loption(separated_nonempty_list(COMMA,expr)) -> separated_nonempty_list(COMMA,expr) 
+
+State 39:
+stmt -> IDENT LPAR loption(separated_nonempty_list(COMMA,expr)) . RPAR [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On RPAR shift to state 40
+
+State 40:
+stmt -> IDENT LPAR loption(separated_nonempty_list(COMMA,expr)) RPAR . [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On TURNRIGHT reduce production stmt -> IDENT LPAR loption(separated_nonempty_list(COMMA,expr)) RPAR 
+-- On TURNLEFT reduce production stmt -> IDENT LPAR loption(separated_nonempty_list(COMMA,expr)) RPAR 
+-- On REPEAT reduce production stmt -> IDENT LPAR loption(separated_nonempty_list(COMMA,expr)) RPAR 
+-- On RACC reduce production stmt -> IDENT LPAR loption(separated_nonempty_list(COMMA,expr)) RPAR 
+-- On PENUP reduce production stmt -> IDENT LPAR loption(separated_nonempty_list(COMMA,expr)) RPAR 
+-- On PENDOWN reduce production stmt -> IDENT LPAR loption(separated_nonempty_list(COMMA,expr)) RPAR 
+-- On LACC reduce production stmt -> IDENT LPAR loption(separated_nonempty_list(COMMA,expr)) RPAR 
+-- On IF reduce production stmt -> IDENT LPAR loption(separated_nonempty_list(COMMA,expr)) RPAR 
+-- On IDENT reduce production stmt -> IDENT LPAR loption(separated_nonempty_list(COMMA,expr)) RPAR 
+-- On FORWARD reduce production stmt -> IDENT LPAR loption(separated_nonempty_list(COMMA,expr)) RPAR 
+-- On EOF reduce production stmt -> IDENT LPAR loption(separated_nonempty_list(COMMA,expr)) RPAR 
+-- On ELSE reduce production stmt -> IDENT LPAR loption(separated_nonempty_list(COMMA,expr)) RPAR 
+-- On DEF reduce production stmt -> IDENT LPAR loption(separated_nonempty_list(COMMA,expr)) RPAR 
+-- On COLOR reduce production stmt -> IDENT LPAR loption(separated_nonempty_list(COMMA,expr)) RPAR 
+
+State 41:
+expr -> expr . ADD expr [ SUB RPAR MUL DIV COMMA ADD ]
+expr -> expr . SUB expr [ SUB RPAR MUL DIV COMMA ADD ]
+expr -> expr . MUL expr [ SUB RPAR MUL DIV COMMA ADD ]
+expr -> expr . DIV expr [ SUB RPAR MUL DIV COMMA ADD ]
+separated_nonempty_list(COMMA,expr) -> expr . [ RPAR ]
+separated_nonempty_list(COMMA,expr) -> expr . COMMA separated_nonempty_list(COMMA,expr) [ RPAR ]
+-- On SUB shift to state 16
+-- On MUL shift to state 18
+-- On DIV shift to state 20
+-- On COMMA shift to state 42
+-- On ADD shift to state 23
+-- On RPAR reduce production separated_nonempty_list(COMMA,expr) -> expr 
+
+State 42:
+separated_nonempty_list(COMMA,expr) -> expr COMMA . separated_nonempty_list(COMMA,expr) [ RPAR ]
+-- On SUB shift to state 11
+-- On LPAR shift to state 12
+-- On INT shift to state 13
+-- On IDENT shift to state 14
+-- On separated_nonempty_list(COMMA,expr) shift to state 43
+-- On expr shift to state 41
+
+State 43:
+separated_nonempty_list(COMMA,expr) -> expr COMMA separated_nonempty_list(COMMA,expr) . [ RPAR ]
+-- On RPAR reduce production separated_nonempty_list(COMMA,expr) -> expr COMMA separated_nonempty_list(COMMA,expr) 
+
+State 44:
+stmt -> FORWARD . expr [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On SUB shift to state 11
+-- On LPAR shift to state 12
+-- On INT shift to state 13
+-- On IDENT shift to state 14
+-- On expr shift to state 45
+
+State 45:
+expr -> expr . ADD expr [ TURNRIGHT TURNLEFT SUB REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COLOR ADD ]
+expr -> expr . SUB expr [ TURNRIGHT TURNLEFT SUB REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COLOR ADD ]
+expr -> expr . MUL expr [ TURNRIGHT TURNLEFT SUB REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COLOR ADD ]
+expr -> expr . DIV expr [ TURNRIGHT TURNLEFT SUB REPEAT RACC PENUP PENDOWN MUL LACC IF IDENT FORWARD EOF ELSE DIV DEF COLOR ADD ]
+stmt -> FORWARD expr . [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On SUB shift to state 16
+-- On MUL shift to state 18
+-- On DIV shift to state 20
+-- On ADD shift to state 23
+-- On TURNRIGHT reduce production stmt -> FORWARD expr 
+-- On TURNLEFT reduce production stmt -> FORWARD expr 
+-- On REPEAT reduce production stmt -> FORWARD expr 
+-- On RACC reduce production stmt -> FORWARD expr 
+-- On PENUP reduce production stmt -> FORWARD expr 
+-- On PENDOWN reduce production stmt -> FORWARD expr 
+-- On LACC reduce production stmt -> FORWARD expr 
+-- On IF reduce production stmt -> FORWARD expr 
+-- On IDENT reduce production stmt -> FORWARD expr 
+-- On FORWARD reduce production stmt -> FORWARD expr 
+-- On EOF reduce production stmt -> FORWARD expr 
+-- On ELSE reduce production stmt -> FORWARD expr 
+-- On DEF reduce production stmt -> FORWARD expr 
+-- On COLOR reduce production stmt -> FORWARD expr 
+
+State 46:
+stmt -> COLOR . color [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On WHITE shift to state 47
+-- On RED shift to state 48
+-- On GREEN shift to state 49
+-- On BLUE shift to state 50
+-- On BLACK shift to state 51
+-- On color shift to state 52
+
+State 47:
+color -> WHITE . [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On TURNRIGHT reduce production color -> WHITE 
+-- On TURNLEFT reduce production color -> WHITE 
+-- On REPEAT reduce production color -> WHITE 
+-- On RACC reduce production color -> WHITE 
+-- On PENUP reduce production color -> WHITE 
+-- On PENDOWN reduce production color -> WHITE 
+-- On LACC reduce production color -> WHITE 
+-- On IF reduce production color -> WHITE 
+-- On IDENT reduce production color -> WHITE 
+-- On FORWARD reduce production color -> WHITE 
+-- On EOF reduce production color -> WHITE 
+-- On ELSE reduce production color -> WHITE 
+-- On DEF reduce production color -> WHITE 
+-- On COLOR reduce production color -> WHITE 
+
+State 48:
+color -> RED . [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On TURNRIGHT reduce production color -> RED 
+-- On TURNLEFT reduce production color -> RED 
+-- On REPEAT reduce production color -> RED 
+-- On RACC reduce production color -> RED 
+-- On PENUP reduce production color -> RED 
+-- On PENDOWN reduce production color -> RED 
+-- On LACC reduce production color -> RED 
+-- On IF reduce production color -> RED 
+-- On IDENT reduce production color -> RED 
+-- On FORWARD reduce production color -> RED 
+-- On EOF reduce production color -> RED 
+-- On ELSE reduce production color -> RED 
+-- On DEF reduce production color -> RED 
+-- On COLOR reduce production color -> RED 
+
+State 49:
+color -> GREEN . [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On TURNRIGHT reduce production color -> GREEN 
+-- On TURNLEFT reduce production color -> GREEN 
+-- On REPEAT reduce production color -> GREEN 
+-- On RACC reduce production color -> GREEN 
+-- On PENUP reduce production color -> GREEN 
+-- On PENDOWN reduce production color -> GREEN 
+-- On LACC reduce production color -> GREEN 
+-- On IF reduce production color -> GREEN 
+-- On IDENT reduce production color -> GREEN 
+-- On FORWARD reduce production color -> GREEN 
+-- On EOF reduce production color -> GREEN 
+-- On ELSE reduce production color -> GREEN 
+-- On DEF reduce production color -> GREEN 
+-- On COLOR reduce production color -> GREEN 
+
+State 50:
+color -> BLUE . [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On TURNRIGHT reduce production color -> BLUE 
+-- On TURNLEFT reduce production color -> BLUE 
+-- On REPEAT reduce production color -> BLUE 
+-- On RACC reduce production color -> BLUE 
+-- On PENUP reduce production color -> BLUE 
+-- On PENDOWN reduce production color -> BLUE 
+-- On LACC reduce production color -> BLUE 
+-- On IF reduce production color -> BLUE 
+-- On IDENT reduce production color -> BLUE 
+-- On FORWARD reduce production color -> BLUE 
+-- On EOF reduce production color -> BLUE 
+-- On ELSE reduce production color -> BLUE 
+-- On DEF reduce production color -> BLUE 
+-- On COLOR reduce production color -> BLUE 
+
+State 51:
+color -> BLACK . [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On TURNRIGHT reduce production color -> BLACK 
+-- On TURNLEFT reduce production color -> BLACK 
+-- On REPEAT reduce production color -> BLACK 
+-- On RACC reduce production color -> BLACK 
+-- On PENUP reduce production color -> BLACK 
+-- On PENDOWN reduce production color -> BLACK 
+-- On LACC reduce production color -> BLACK 
+-- On IF reduce production color -> BLACK 
+-- On IDENT reduce production color -> BLACK 
+-- On FORWARD reduce production color -> BLACK 
+-- On EOF reduce production color -> BLACK 
+-- On ELSE reduce production color -> BLACK 
+-- On DEF reduce production color -> BLACK 
+-- On COLOR reduce production color -> BLACK 
+
+State 52:
+stmt -> COLOR color . [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On TURNRIGHT reduce production stmt -> COLOR color 
+-- On TURNLEFT reduce production stmt -> COLOR color 
+-- On REPEAT reduce production stmt -> COLOR color 
+-- On RACC reduce production stmt -> COLOR color 
+-- On PENUP reduce production stmt -> COLOR color 
+-- On PENDOWN reduce production stmt -> COLOR color 
+-- On LACC reduce production stmt -> COLOR color 
+-- On IF reduce production stmt -> COLOR color 
+-- On IDENT reduce production stmt -> COLOR color 
+-- On FORWARD reduce production stmt -> COLOR color 
+-- On EOF reduce production stmt -> COLOR color 
+-- On ELSE reduce production stmt -> COLOR color 
+-- On DEF reduce production stmt -> COLOR color 
+-- On COLOR reduce production stmt -> COLOR color 
+
+State 53:
+stmt -> IF expr stmt . [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+stmt -> IF expr stmt . ELSE stmt [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On ELSE shift to state 54
+-- On TURNRIGHT reduce production stmt -> IF expr stmt 
+-- On TURNLEFT reduce production stmt -> IF expr stmt 
+-- On REPEAT reduce production stmt -> IF expr stmt 
+-- On RACC reduce production stmt -> IF expr stmt 
+-- On PENUP reduce production stmt -> IF expr stmt 
+-- On PENDOWN reduce production stmt -> IF expr stmt 
+-- On LACC reduce production stmt -> IF expr stmt 
+-- On IF reduce production stmt -> IF expr stmt 
+-- On IDENT reduce production stmt -> IF expr stmt 
+-- On FORWARD reduce production stmt -> IF expr stmt 
+-- On EOF reduce production stmt -> IF expr stmt 
+-- On DEF reduce production stmt -> IF expr stmt 
+-- On COLOR reduce production stmt -> IF expr stmt 
+
+State 54:
+stmt -> IF expr stmt ELSE . stmt [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On TURNRIGHT shift to state 10
+-- On TURNLEFT shift to state 27
+-- On REPEAT shift to state 29
+-- On PENUP shift to state 31
+-- On PENDOWN shift to state 32
+-- On LACC shift to state 33
+-- On IF shift to state 34
+-- On IDENT shift to state 36
+-- On FORWARD shift to state 44
+-- On COLOR shift to state 46
+-- On stmt shift to state 55
+
+State 55:
+stmt -> IF expr stmt ELSE stmt . [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On TURNRIGHT reduce production stmt -> IF expr stmt ELSE stmt 
+-- On TURNLEFT reduce production stmt -> IF expr stmt ELSE stmt 
+-- On REPEAT reduce production stmt -> IF expr stmt ELSE stmt 
+-- On RACC reduce production stmt -> IF expr stmt ELSE stmt 
+-- On PENUP reduce production stmt -> IF expr stmt ELSE stmt 
+-- On PENDOWN reduce production stmt -> IF expr stmt ELSE stmt 
+-- On LACC reduce production stmt -> IF expr stmt ELSE stmt 
+-- On IF reduce production stmt -> IF expr stmt ELSE stmt 
+-- On IDENT reduce production stmt -> IF expr stmt ELSE stmt 
+-- On FORWARD reduce production stmt -> IF expr stmt ELSE stmt 
+-- On EOF reduce production stmt -> IF expr stmt ELSE stmt 
+-- On ELSE reduce production stmt -> IF expr stmt ELSE stmt 
+-- On DEF reduce production stmt -> IF expr stmt ELSE stmt 
+-- On COLOR reduce production stmt -> IF expr stmt ELSE stmt 
+
+State 56:
+list(stmt) -> stmt . list(stmt) [ RACC EOF ]
+-- On TURNRIGHT shift to state 10
+-- On TURNLEFT shift to state 27
+-- On REPEAT shift to state 29
+-- On PENUP shift to state 31
+-- On PENDOWN shift to state 32
+-- On LACC shift to state 33
+-- On IF shift to state 34
+-- On IDENT shift to state 36
+-- On FORWARD shift to state 44
+-- On COLOR shift to state 46
+-- On stmt shift to state 56
+-- On list(stmt) shift to state 57
+-- On RACC reduce production list(stmt) -> 
+-- On EOF reduce production list(stmt) -> 
+
+State 57:
+list(stmt) -> stmt list(stmt) . [ RACC EOF ]
+-- On RACC reduce production list(stmt) -> stmt list(stmt) 
+-- On EOF reduce production list(stmt) -> stmt list(stmt) 
+
+State 58:
+stmt -> LACC list(stmt) . RACC [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On RACC shift to state 59
+
+State 59:
+stmt -> LACC list(stmt) RACC . [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On TURNRIGHT reduce production stmt -> LACC list(stmt) RACC 
+-- On TURNLEFT reduce production stmt -> LACC list(stmt) RACC 
+-- On REPEAT reduce production stmt -> LACC list(stmt) RACC 
+-- On RACC reduce production stmt -> LACC list(stmt) RACC 
+-- On PENUP reduce production stmt -> LACC list(stmt) RACC 
+-- On PENDOWN reduce production stmt -> LACC list(stmt) RACC 
+-- On LACC reduce production stmt -> LACC list(stmt) RACC 
+-- On IF reduce production stmt -> LACC list(stmt) RACC 
+-- On IDENT reduce production stmt -> LACC list(stmt) RACC 
+-- On FORWARD reduce production stmt -> LACC list(stmt) RACC 
+-- On EOF reduce production stmt -> LACC list(stmt) RACC 
+-- On ELSE reduce production stmt -> LACC list(stmt) RACC 
+-- On DEF reduce production stmt -> LACC list(stmt) RACC 
+-- On COLOR reduce production stmt -> LACC list(stmt) RACC 
+
+State 60:
+stmt -> REPEAT expr stmt . [ TURNRIGHT TURNLEFT REPEAT RACC PENUP PENDOWN LACC IF IDENT FORWARD EOF ELSE DEF COLOR ]
+-- On TURNRIGHT reduce production stmt -> REPEAT expr stmt 
+-- On TURNLEFT reduce production stmt -> REPEAT expr stmt 
+-- On REPEAT reduce production stmt -> REPEAT expr stmt 
+-- On RACC reduce production stmt -> REPEAT expr stmt 
+-- On PENUP reduce production stmt -> REPEAT expr stmt 
+-- On PENDOWN reduce production stmt -> REPEAT expr stmt 
+-- On LACC reduce production stmt -> REPEAT expr stmt 
+-- On IF reduce production stmt -> REPEAT expr stmt 
+-- On IDENT reduce production stmt -> REPEAT expr stmt 
+-- On FORWARD reduce production stmt -> REPEAT expr stmt 
+-- On EOF reduce production stmt -> REPEAT expr stmt 
+-- On ELSE reduce production stmt -> REPEAT expr stmt 
+-- On DEF reduce production stmt -> REPEAT expr stmt 
+-- On COLOR reduce production stmt -> REPEAT expr stmt 
+
+State 61:
+def -> DEF IDENT LPAR loption(separated_nonempty_list(COMMA,IDENT)) RPAR stmt . [ TURNRIGHT TURNLEFT REPEAT PENUP PENDOWN LACC IF IDENT FORWARD EOF DEF COLOR ]
+-- On TURNRIGHT reduce production def -> DEF IDENT LPAR loption(separated_nonempty_list(COMMA,IDENT)) RPAR stmt 
+-- On TURNLEFT reduce production def -> DEF IDENT LPAR loption(separated_nonempty_list(COMMA,IDENT)) RPAR stmt 
+-- On REPEAT reduce production def -> DEF IDENT LPAR loption(separated_nonempty_list(COMMA,IDENT)) RPAR stmt 
+-- On PENUP reduce production def -> DEF IDENT LPAR loption(separated_nonempty_list(COMMA,IDENT)) RPAR stmt 
+-- On PENDOWN reduce production def -> DEF IDENT LPAR loption(separated_nonempty_list(COMMA,IDENT)) RPAR stmt 
+-- On LACC reduce production def -> DEF IDENT LPAR loption(separated_nonempty_list(COMMA,IDENT)) RPAR stmt 
+-- On IF reduce production def -> DEF IDENT LPAR loption(separated_nonempty_list(COMMA,IDENT)) RPAR stmt 
+-- On IDENT reduce production def -> DEF IDENT LPAR loption(separated_nonempty_list(COMMA,IDENT)) RPAR stmt 
+-- On FORWARD reduce production def -> DEF IDENT LPAR loption(separated_nonempty_list(COMMA,IDENT)) RPAR stmt 
+-- On EOF reduce production def -> DEF IDENT LPAR loption(separated_nonempty_list(COMMA,IDENT)) RPAR stmt 
+-- On DEF reduce production def -> DEF IDENT LPAR loption(separated_nonempty_list(COMMA,IDENT)) RPAR stmt 
+-- On COLOR reduce production def -> DEF IDENT LPAR loption(separated_nonempty_list(COMMA,IDENT)) RPAR stmt 
+
+State 62:
+prog' -> prog . [ # ]
+-- On # accept prog
+
+State 63:
+prog -> list(def) . list(stmt) EOF [ # ]
+-- On TURNRIGHT shift to state 10
+-- On TURNLEFT shift to state 27
+-- On REPEAT shift to state 29
+-- On PENUP shift to state 31
+-- On PENDOWN shift to state 32
+-- On LACC shift to state 33
+-- On IF shift to state 34
+-- On IDENT shift to state 36
+-- On FORWARD shift to state 44
+-- On COLOR shift to state 46
+-- On stmt shift to state 56
+-- On list(stmt) shift to state 64
+-- On EOF reduce production list(stmt) -> 
+
+State 64:
+prog -> list(def) list(stmt) . EOF [ # ]
+-- On EOF shift to state 65
+
+State 65:
+prog -> list(def) list(stmt) EOF . [ # ]
+-- On # reduce production prog -> list(def) list(stmt) EOF 
+
+State 66:
+list(def) -> def . list(def) [ TURNRIGHT TURNLEFT REPEAT PENUP PENDOWN LACC IF IDENT FORWARD EOF COLOR ]
+-- On DEF shift to state 1
+-- On list(def) shift to state 67
+-- On def shift to state 66
+-- On TURNRIGHT reduce production list(def) -> 
+-- On TURNLEFT reduce production list(def) -> 
+-- On REPEAT reduce production list(def) -> 
+-- On PENUP reduce production list(def) -> 
+-- On PENDOWN reduce production list(def) -> 
+-- On LACC reduce production list(def) -> 
+-- On IF reduce production list(def) -> 
+-- On IDENT reduce production list(def) -> 
+-- On FORWARD reduce production list(def) -> 
+-- On EOF reduce production list(def) -> 
+-- On COLOR reduce production list(def) -> 
+
+State 67:
+list(def) -> def list(def) . [ TURNRIGHT TURNLEFT REPEAT PENUP PENDOWN LACC IF IDENT FORWARD EOF COLOR ]
+-- On TURNRIGHT reduce production list(def) -> def list(def) 
+-- On TURNLEFT reduce production list(def) -> def list(def) 
+-- On REPEAT reduce production list(def) -> def list(def) 
+-- On PENUP reduce production list(def) -> def list(def) 
+-- On PENDOWN reduce production list(def) -> def list(def) 
+-- On LACC reduce production list(def) -> def list(def) 
+-- On IF reduce production list(def) -> def list(def) 
+-- On IDENT reduce production list(def) -> def list(def) 
+-- On FORWARD reduce production list(def) -> def list(def) 
+-- On EOF reduce production list(def) -> def list(def) 
+-- On COLOR reduce production list(def) -> def list(def) 
+
